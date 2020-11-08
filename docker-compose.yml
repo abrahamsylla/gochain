@@ -1,0 +1,24 @@
+version: '3.6'
+
+networks:
+   brutwork:
+
+services:
+ gopro:
+   image: 'projet_latest'
+   build: .
+   ports: 
+     - '8000:8000'
+   networks: 
+     - 'brutwork'
+   depends_on:
+     - 'postgres'
+
+ postgres:
+   image: "postgres"
+   environment:
+     - 'POSTGRES_PASSWORD=1A2B3456789'
+   networks: 
+     - 'brutwork'
+   ports: 
+     - '5432:5432'
